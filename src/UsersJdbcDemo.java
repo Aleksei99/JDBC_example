@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.List;
 
 public class UsersJdbcDemo {
     public static void main(String[] args) throws ClassNotFoundException {
@@ -6,8 +7,22 @@ public class UsersJdbcDemo {
         //executeUpdate();
         //executeQuery();
         //executeU();
-        PreparedStatementQuery();
-        executeQ();
+        //PreparedStatementQuery();
+        //executeQ();
+
+        UserDAO userDAO = new UserDAOImpl();
+     //   userDAO.remove(10L);
+
+        List<User> users = userDAO.findAllUsers();
+        for (User user:users) {
+            System.out.println(user.getId()+" "+user.getName()+" "+user.getEmail());
+        }
+
+        User user = userDAO.findUser(1L);
+        System.out.println(user.getId()+" "+user.getName()+" "+user.getEmail());
+
+       // User newUser = new User("justBot","JBt@gmail.com");
+        //userDAO.save(newUser);
     }
 
     private static void executeQuery() throws ClassNotFoundException {
